@@ -1,14 +1,36 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="/favicon.png" type="image/png">
-    <link rel="stylesheet" href="./src/style.css">
-    <title>Forest</title>
-  </head>
-  <body class="bg-verde-800 font-sans">
-    <div class="container">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon.png" type="image/png" />
+  <link rel="stylesheet" href="./src/style.css" />
+  <title>Forest</title>
+</head>
+<body class="bg-verde-800 font-sans">
+  <div class="container mt-4 justify-start">
+    <div class="inline-flex items-center rounded-md bg-verde-900">
+      <span class="size-2 bg-verde-300 block rounded-full relative -left-1"></span>
+      <div class="flex text-verde-300 divide-x-2 divide-verde-800">
+        <div class="px-4 py-2 capitalize" id="dia">segunda</div>
+        <div class="px-4 py-2" id="temperatura">25°</div>
+        <div class="px-4 py-2" id="tempo">🌥️</div>
+      </div>
     </div>
-  </body>
+  </div>
+
+  <header class="container flex justify-between items-center gap-8 py-8">
+    <a href="./">
+      <img src="assets/icons/forest.svg" alt="Forest">
+    </a>
+    <nav>
+      <ul class="text-white text-xl flex flex-wrap gap-8">
+        <li><a class="hover:underline hover:underline-offset-8" href="#acomodacoes">Acomodações</a></li>
+        <li><a class="hover:underline hover:underline-offset-8" href="#eventos">Eventos</a></li>
+        <li><a class="hover:underline hover:underline-offset-8" href="#experiencias">Experiências</a></li>
+        <li><a class="hover:underline hover:underline-offset-8" href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+  </header>
+</body>
 </html>
