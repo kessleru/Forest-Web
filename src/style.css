@@ -1,5 +1,8 @@
 @import 'tailwindcss';
 
+@import "@fontsource-variable/dm-sans";
+@import "@fontsource/dm-serif-text";
+
 @plugin 'tailwind-scrollbar';
 
 @theme {
@@ -14,7 +17,7 @@
   --animate-slideIn: slideIn 0.4s ease-in-out forwards;
   --animate-fadeIn: fadeIn 0.4s ease-in-out forwards;
 
-  --font-sans: 'DM Sans', 'system-ui', 'sans-serif';
+  --font-sans: 'DM Sans Variable', 'system-ui', 'sans-serif';
   --font-serif: 'DM Serif Text', 'Georgia', 'serif';
 
   @keyframes slideIn {
