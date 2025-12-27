@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@plugin 'tailwind-scrollbar';
+
 @theme {
   --color-verde-200: #acef75;
   --color-verde-300: #91ee77;
