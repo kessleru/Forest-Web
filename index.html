@@ -23,7 +23,7 @@
 
     <header class="container flex justify-between items-center gap-8 py-8">
       <a href="./">
-        <img src="assets/icons/forest.svg" alt="Forest" />
+        <img src="/assets/icons/forest.svg" alt="Forest" />
       </a>
       <nav>
         <ul class="text-white text-xl flex flex-wrap gap-8">
@@ -74,7 +74,9 @@
             >Reserve Hoje</a
           >
         </div>
-        <h1 class="mb-8 font-serif max-w-screen-sm text-4xl text-balance sm:5xl sm:mb-20">
+        <h1
+          class="mb-8 font-serif max-w-screen-sm text-4xl text-balance sm:5xl sm:mb-20"
+        >
           Venha Experimentar a Vida na Floresta
         </h1>
         <div class="text-sm sm:flex justify-between items-end">
@@ -101,5 +103,77 @@
         </div>
       </div>
     </main>
+
+    <section
+      id="acomodacoes"
+      class="container grid gap-8 lg:grid-cols-[2fr_3fr] pt-16 mb-12 sm:mb-16"
+    >
+      <div
+        class="content-end bg-[url('/assets/icons/padrao.svg')] bg-no-repeat bg-contain bg-bottom-left"
+      >
+        <h2 class="text-white mb-8 text-4xl font-serif lg:text-5xl">
+          Refúgio Natural
+        </h2>
+        <ul
+          class="text-gray-200 *:flex *:items-center *:gap-4 space-x-4 sm:text-xl"
+        >
+          <li>
+            <span class="w-6 h-0.5 bg-verde-400 inline-block"></span>Experimente
+            a natureza de perto
+          </li>
+          <li>
+            <span class="w-6 h-0.5 bg-verde-400 inline-block"></span>Conecte-se
+            com a natureza
+          </li>
+          <li>
+            <span class="w-6 h-0.5 bg-verde-400 inline-block"></span
+            >Desconecte-se do digital
+          </li>
+          <li>
+            <span class="w-6 h-0.5 bg-verde-400 inline-block"></span>Observe a
+            vidas selvagem
+          </li>
+          <li>
+            <span class="w-6 h-0.5 bg-verde-400 inline-block"></span>Escolha a
+            sua cabine preferida
+          </li>
+        </ul>
+      </div>
+      <div class="grid grid-cols-[2fr_1fr] gap-4 sm:gap-8">
+        <div class="col-span-full grid *:col-start-1 *:row-start-1">
+          <img
+            class="h-52 w-full object-cover"
+            src="/assets/imgs/casa1.jpg"
+            alt="Casa 1"
+          />
+          <span
+            class="m-2 self-start justify-self-end uppercase text-white rounded-full bg-verde-950/60 px-4 py-2 text-sm/none"
+            >Ruby</span
+          >
+        </div>
+        <div class="grid *:col-start-1 *:row-start-1">
+          <img
+            class="size-full object-cover"
+            src="/assets/imgs/casa2.jpg"
+            alt="Casa 2"
+          />
+          <span
+            class="m-2 self-start justify-self-end uppercase text-white rounded-full bg-verde-950/60 px-4 py-2 text-sm/none"
+            >Emerald</span
+          >
+        </div>
+        <div class="grid *:col-start-1 *:row-start-1">
+          <img
+            class="size-full object-cover"
+            src="/assets/imgs/casa3.jpg"
+            alt="Casa 3"
+          />
+          <span
+            class="m-2 self-start justify-self-end uppercase text-white rounded-full bg-verde-950/60 px-4 py-2 text-sm/none"
+            >Saphire</span
+          >
+        </div>
+      </div>
+    </section>
   </body>
 </html>

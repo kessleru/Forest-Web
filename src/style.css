@@ -12,9 +12,9 @@
 
 @utility container {
   margin: 0 auto;
-  padding: 0.5rem;
+  padding: 0 0.5rem;
   @media (width >= 640px) {
-    padding: 1rem;
+    padding: 0 1rem;
   }
 }
 
