@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @plugin 'tailwind-scrollbar';
 
@@ -10,6 +10,32 @@
   --color-verde-800: #16281f;
   --color-verde-900: #0f1c15;
   --color-verde-950: #030504;
+
+  --animate-slideIn: slideIn 0.4s ease-in-out forwards;
+  --animate-fadeIn: fadeIn 0.4s ease-in-out forwards;
+
+  --font-sans: 'DM Sans', 'system-ui', 'sans-serif';
+  --font-serif: 'DM Serif Text', 'Georgia', 'serif';
+
+  @keyframes slideIn {
+    0% {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 }
 
 @utility container {
@@ -20,3 +46,42 @@
   }
 }
 
+@utility animate-delay-1 {
+  animation-delay: 100ms;
+}
+
+@utility animate-delay-2 {
+  animation-delay: 200ms;
+}
+
+@utility animate-delay-3 {
+  animation-delay: 300ms;
+}
+
+@utility animate-delay-4 {
+  animation-delay: 400ms;
+}
+
+@layer components {
+  .neon {
+    @apply rounded-full border border-verde-200 bg-linear-to-b from-verde-200 to-verde-400 text-verde-900;
+    box-shadow: 0 1px 4px 2px
+        color-mix(in srgb, var(--color-verde-200), transparent 60%),
+      inset 0px -1px 2px var(--color-verde-200);
+  }
+
+  .btn {
+    @apply rounded-full border border-verde-200 bg-linear-to-b from-verde-200 to-verde-400 px-5 py-2 text-verde-900 transition hover:contrast-200;
+    box-shadow: 0 1px 4px 1px
+        color-mix(in srgb, var(--color-verde-200), transparent 75%),
+      inset 0px -1px 2px var(--color-verde-200);
+  }
+
+  .input {
+    @apply rounded-md border-2 border-verde-800 bg-verde-800 p-2 text-white focus:outline-none focus:ring-2 focus:ring-verde-400 focus:border-verde-900 placeholder:text-verde-900;
+  }
+
+  .radial-gradient {
+    @apply bg-radial-[50%_100%_at_50%_0%] from-verde-700 to-verde-800;
+  }
+}
