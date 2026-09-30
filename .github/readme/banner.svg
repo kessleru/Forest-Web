@@ -2,17 +2,35 @@
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#030504"/>
-      <stop offset="100%" stop-color="#2e482c"/>
+      <stop offset="100%" stop-color="#16281f"/>
     </linearGradient>
     <filter id="sombra" x="-20%" y="-20%" width="140%" height="140%">
       <feDropShadow dx="0" dy="10" stdDeviation="16" flood-color="#000000" flood-opacity=".28"/>
     </filter>
     <clipPath id="recorte"><rect width="428" height="252" rx="18"/></clipPath>
+    <clipPath id="moldura"><rect width="1200" height="380" rx="24"/></clipPath>
   </defs>
 
   <rect width="1200" height="380" rx="24" fill="url(#bg)"/>
-  <circle cx="1105" cy="60" r="190" fill="#91ee77" opacity="0.08"/>
-  <circle cx="110" cy="360" r="150" fill="#91ee77" opacity="0.064"/>
+
+  <g clip-path="url(#moldura)">
+  <circle cx="1060" cy="104" r="46" fill="#acef75" opacity=".12"/>
+  <circle cx="1060" cy="104" r="28" fill="#acef75" opacity=".22"/>
+  <path d="M760 180L835.6 295.5H794.02L846.9399999999999 373.2H673.0600000000001L725.98 295.5H684.4z" fill="#2e482c"/><rect x="756" y="373.2" width="8" height="18.8" fill="#2e482c"/><path d="M840 140L930 277.5H880.5L943.5 370H736.5L799.5 277.5H750z" fill="#2e482c"/><rect x="836" y="370" width="8" height="22" fill="#2e482c"/><path d="M930 200L998.4 304.5H960.78L1008.66 374.8H851.34L899.22 304.5H861.6z" fill="#2e482c"/><rect x="926" y="374.8" width="8" height="17.200000000000003" fill="#2e482c"/><path d="M1010 130L1103.6 273H1052.12L1117.6399999999999 369.2H902.36L967.88 273H916.4z" fill="#2e482c"/><rect x="1006" y="369.2" width="8" height="22.8" fill="#2e482c"/><path d="M1100 170L1179.2 291H1135.64L1191.08 372.4H1008.92L1064.36 291H1020.8z" fill="#2e482c"/><rect x="1096" y="372.4" width="8" height="19.6" fill="#2e482c"/><path d="M1180 150L1266.4 282H1218.88L1279.36 370.8H1080.64L1141.12 282H1093.6z" fill="#2e482c"/><rect x="1176" y="370.8" width="8" height="21.2" fill="#2e482c"/>
+  <path d="M700 250L754 332.5H724.3L762.1 388H637.9L675.7 332.5H646z" fill="#16281f"/><rect x="696" y="388" width="8" height="14" fill="#16281f"/><path d="M800 220L864.8 319H829.16L874.52 385.6H725.48L770.84 319H735.2z" fill="#16281f"/><rect x="796" y="385.6" width="8" height="16.4" fill="#16281f"/><path d="M890 260L940.4 337H912.68L947.96 388.8H832.04L867.32 337H839.6z" fill="#16281f"/><rect x="886" y="388.8" width="8" height="13.200000000000001" fill="#16281f"/><path d="M970 200L1042 310H1002.4L1052.8 384H887.2L937.6 310H898z" fill="#16281f"/><rect x="966" y="384" width="8" height="18" fill="#16281f"/><path d="M1060 240L1117.6 328H1085.92L1126.24 387.2H993.76L1034.08 328H1002.4z" fill="#16281f"/><rect x="1056" y="387.2" width="8" height="14.8" fill="#16281f"/><path d="M1150 210L1218.4 314.5H1180.78L1228.66 384.8H1071.34L1119.22 314.5H1081.6z" fill="#16281f"/><rect x="1146" y="384.8" width="8" height="17.200000000000003" fill="#16281f"/>
+  <path d="M740 300L779.6 360.5H757.82L785.54 401.2H694.46L722.18 360.5H700.4z" fill="#0f1c15"/><rect x="736" y="401.2" width="8" height="10.8" fill="#0f1c15"/><path d="M860 280L906.8 351.5H881.06L913.8199999999999 399.6H806.1800000000001L838.94 351.5H813.2z" fill="#0f1c15"/><rect x="856" y="399.6" width="8" height="12.4" fill="#0f1c15"/><path d="M1000 290L1043.2 356H1019.44L1049.68 400.4H950.32L980.56 356H956.8z" fill="#0f1c15"/><rect x="996" y="400.4" width="8" height="11.6" fill="#0f1c15"/><path d="M1120 270L1170.4 347H1142.68L1177.96 398.8H1062.04L1097.32 347H1069.6z" fill="#0f1c15"/><rect x="1116" y="398.8" width="8" height="13.200000000000001" fill="#0f1c15"/>
+  <g transform="translate(740,40)">
+    <rect width="252" height="38" rx="10" fill="#0f1c15" stroke="#2e482c"/>
+    <circle cx="18" cy="19" r="4" fill="#91ee77"/>
+    <g font-family="'DM Sans',system-ui,sans-serif" font-size="14" fill="#acef75">
+      <text x="30" y="24">Terça-Feira</text>
+      <line x1="118" y1="8" x2="118" y2="30" stroke="#2e482c"/>
+      <text x="130" y="24">22°</text>
+      <line x1="168" y1="8" x2="168" y2="30" stroke="#2e482c"/>
+      <text x="180" y="24">chuva 27%</text>
+    </g>
+  </g>
+  </g>
 
   <text x="72" y="148" font-family="system-ui,-apple-system,'Segoe UI',Roboto,sans-serif" font-size="52" font-weight="800" letter-spacing="-1" fill="#ffffff">Forest</text>
   <text x="74" y="196" font-family="system-ui,-apple-system,'Segoe UI',Roboto,sans-serif" font-size="24" font-weight="600" fill="#ffffff">Landing page de refúgios na floresta</text>
@@ -27,23 +45,5 @@
     <circle cx="417" cy="278" r="4" fill="#acef75"/><text x="429" y="283" fill="#acef75">SEO</text>
   </g>
 
-  <g transform="translate(700,64)">
-    <rect width="428" height="252" rx="18" fill="#0d1117" filter="url(#sombra)"/>
-    <g clip-path="url(#recorte)">
-    <rect width="428" height="252" rx="18" fill="#0d1117"/>
-    <path d="M0 18a18 18 0 0 1 18-18h392a18 18 0 0 1 18 18v12H0z" fill="#161b22"/>
-    <circle cx="22" cy="16" r="4.5" fill="#ff5f57"/><circle cx="38" cy="16" r="4.5" fill="#febc2e"/><circle cx="54" cy="16" r="4.5" fill="#28c840"/>
-    <text x="241" y="20" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace,'Noto Color Emoji','Apple Color Emoji','Segoe UI Emoji'" font-size="11" fill="#7d8590">index.html — &lt;script&gt;</text>
-    <g font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace,'Noto Color Emoji','Apple Color Emoji','Segoe UI Emoji'" font-size="10.6" fill="#c9d1d9">
-    <text x="20" y="56.3" xml:space="preserve"><tspan fill="#79c0ff">const</tspan><tspan> random = Math.</tspan><tspan fill="#d2a8ff">floor</tspan><tspan>(Math.</tspan><tspan fill="#d2a8ff">random</tspan><tspan>() * </tspan><tspan fill="#f2cc60">10</tspan><tspan>) + </tspan><tspan fill="#f2cc60">20</tspan><tspan>;</tspan></text>
-    <text x="20" y="72.72999999999999" xml:space="preserve"><tspan>temperatura.innerText = </tspan><tspan fill="#7ee787">`${random}°`</tspan><tspan>;</tspan></text>
-    <text x="20" y="89.16" xml:space="preserve"><tspan>tempo.innerText = random &lt; </tspan><tspan fill="#f2cc60">25</tspan><tspan> ? </tspan><tspan fill="#7ee787">`🌧️ ${random + 5}%`</tspan><tspan> : </tspan><tspan fill="#7ee787">`🌥️`</tspan><tspan>;</tspan></text>
-    <text x="20" y="105.59" xml:space="preserve"><tspan></tspan></text>
-    <text x="20" y="122.02" xml:space="preserve"><tspan>video.src =</tspan></text>
-    <text x="20" y="138.45" xml:space="preserve"><tspan>  random &lt; </tspan><tspan fill="#f2cc60">25</tspan></text>
-    <text x="20" y="154.88" xml:space="preserve"><tspan>    ? </tspan><tspan fill="#7ee787">`/videos/video_chuva.mp4`</tspan></text>
-    <text x="20" y="171.31" xml:space="preserve"><tspan>    : </tspan><tspan fill="#7ee787">`/videos/video_sol.mp4`</tspan><tspan>;</tspan></text>
-    </g>
-    </g>
-  </g>
+
 </svg>

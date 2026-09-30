@@ -6,7 +6,7 @@
  * Sem dependências. Todo texto de terminal nas cenas lá embaixo é cópia de uma
  * execução real — se a saída mudar, cole a nova e rode de novo.
  */
-import { writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 const SAIDA = import.meta.dirname;
@@ -130,7 +130,7 @@ ${linhasSvg(linhas, { x: 20, y0: +(44 + alturaLinha * 0.75).toFixed(1), alturaLi
     </g>`;
 }
 
-function banner({ arquivo, titulo, tagline, stack, pills = [], cores, card, rotulo }) {
+function banner({ arquivo, titulo, tagline, stack, pills = [], cores, card, arte = '', defs = '', circulos = true, rotulo }) {
   const { de, ate, texto = '#ffffff', suave = 'rgba(255,255,255,.78)', circulo = '#ffffff', circuloOpacidade = 0.08 } = cores;
   const tamanhoTitulo = titulo.length > 16 ? 44 : 52;
 
@@ -163,11 +163,14 @@ function banner({ arquivo, titulo, tagline, stack, pills = [], cores, card, rotu
       <feDropShadow dx="0" dy="10" stdDeviation="16" flood-color="#000000" flood-opacity=".28"/>
     </filter>
     <clipPath id="recorte"><rect width="428" height="252" rx="18"/></clipPath>
+    <clipPath id="moldura"><rect width="1200" height="380" rx="24"/></clipPath>${defs}
   </defs>
 
   <rect width="1200" height="380" rx="24" fill="url(#bg)"/>
-  <circle cx="1105" cy="60" r="190" fill="${circulo}" opacity="${circuloOpacidade}"/>
-  <circle cx="110" cy="360" r="150" fill="${circulo}" opacity="${circuloOpacidade * 0.8}"/>
+${circulos ? `  <circle cx="1105" cy="60" r="190" fill="${circulo}" opacity="${circuloOpacidade}"/>
+  <circle cx="110" cy="360" r="150" fill="${circulo}" opacity="${circuloOpacidade * 0.8}"/>` : ''}
+  <g clip-path="url(#moldura)">${arte}
+  </g>
 
   <text x="72" y="148" font-family="${FONTE_UI}" font-size="${tamanhoTitulo}" font-weight="800" letter-spacing="-1" fill="${texto}">${escapar(titulo)}</text>
   <text x="74" y="196" font-family="${FONTE_UI}" font-size="24" font-weight="600" fill="${texto}">${escapar(tagline)}</text>
@@ -177,15 +180,38 @@ function banner({ arquivo, titulo, tagline, stack, pills = [], cores, card, rotu
     ${pillsSvg}
   </g>
 
-  <g transform="translate(700,64)">
+${card ? `  <g transform="translate(700,64)">
     <rect width="428" height="252" rx="18" fill="${card.fundo ?? '#ffffff'}" filter="url(#sombra)"/>
     <g clip-path="url(#recorte)">${card.conteudo}
     </g>
-  </g>
+  </g>` : ''}
 </svg>
 `;
   writeFileSync(join(SAIDA, arquivo), svg);
   console.log(`✓ ${arquivo}  (1200×380)`);
+}
+
+/**
+ * Embute um SVG do próprio repositório (logo, ícone) dentro do banner, na
+ * caixa x/y/largura/altura. Ids ganham prefixo para não colidirem entre si.
+ * `trocar` substitui cores literais (ex.: { white: '#1a1a1a' }).
+ */
+function svgArquivo(caminho, { x, y, largura, altura, trocar = {}, extra = '' }) {
+  let bruto = readFileSync(join(SAIDA, '..', '..', caminho), 'utf8')
+    .replace(/<\?xml[^>]*>/g, '')
+    .replace(/<!--[\s\S]*?-->/g, '');
+  const raiz = bruto.match(/<svg[ >][^>]*>/)[0];
+  const viewBox =
+    (raiz.match(/viewBox="([^"]+)"/) ?? [])[1] ??
+    `0 0 ${parseFloat(raiz.match(/width="([^"]+)"/)[1])} ${parseFloat(raiz.match(/height="([^"]+)"/)[1])}`;
+  const prefixo = caminho.replace(/[^a-z0-9]/gi, '');
+  let miolo = bruto.slice(bruto.indexOf(raiz) + raiz.length, bruto.lastIndexOf('</svg>'));
+  miolo = miolo
+    .replace(/id="([^"]+)"/g, `id="${prefixo}-$1"`)
+    .replace(/url\(#([^)]+)\)/g, `url(#${prefixo}-$1)`)
+    .replace(/href="#([^"]+)"/g, `href="#${prefixo}-$1"`);
+  for (const [de, para] of Object.entries(trocar)) miolo = miolo.split(`"${de}"`).join(`"${para}"`);
+  return `<svg x="${x}" y="${y}" width="${largura}" height="${altura}" viewBox="${viewBox}" ${extra}>${miolo.trim()}</svg>`;
 }
 
 // Atalhos ANSI para escrever as cenas
@@ -202,32 +228,41 @@ const _ = '\x1b[0m';
 // ---------------------------------------------------------------------
 // Cenas
 // ---------------------------------------------------------------------
-// Card: o script inline do index.html que sorteia o "clima" e escolhe o vídeo do topo.
+// Arte: pinheiros em camadas na paleta verde do @theme, o logo do próprio repo
+// (src/assets/icons/forest.svg) e o chip de clima que o script sorteia no topo.
+const pinheiro = (x, base, altura, cor) => {
+  const l = altura * 0.36;
+  return `<path d="M${x} ${base - altura}L${x + l} ${base - altura * 0.45}H${x + l * 0.45}L${x + l * 1.15} ${base - altura * 0.08}H${x - l * 1.15}L${x - l * 0.45} ${base - altura * 0.45}H${x - l}z" fill="${cor}"/><rect x="${x - 4}" y="${base - altura * 0.08}" width="8" height="${altura * 0.08 + 2}" fill="${cor}"/>`;
+};
+const fileira = (itens, cor) => itens.map(([x, base, h]) => pinheiro(x, base, h, cor)).join('');
+
 banner({
   arquivo: 'banner.svg',
   titulo: 'Forest',
   tagline: 'Landing page de refúgios na floresta',
   stack: 'Vite · Tailwind CSS v4 · HTML · JavaScript',
-  cores: { de: '#030504', ate: '#2e482c', circulo: '#91ee77', circuloOpacidade: 0.08 },
+  cores: { de: '#030504', ate: '#16281f' },
+  circulos: false,
   pills: [
     { texto: 'Vídeo por clima', fundo: 'rgba(145,238,119,.16)', cor: '#acef75' },
     { texto: 'Menu mobile', fundo: 'rgba(145,238,119,.16)', cor: '#acef75' },
     { texto: 'SEO', fundo: 'rgba(145,238,119,.16)', cor: '#acef75' },
   ],
-  card: {
-    fundo: '#0d1117',
-    conteudo: cardTerminal({
-      titulo: 'index.html — <script>',
-      linhas: [
-        `${az}const${_} random = Math.${mg}floor${_}(Math.${mg}random${_}() * ${am}10${_}) + ${am}20${_};`,
-        `temperatura.innerText = ${v}\`\${random}°\`${_};`,
-        `tempo.innerText = random < ${am}25${_} ? ${v}\`🌧️ \${random + 5}%\`${_} : ${v}\`🌥️\`${_};`,
-        ``,
-        `video.src =`,
-        `  random < ${am}25${_}`,
-        `    ? ${v}\`/videos/video_chuva.mp4\`${_}`,
-        `    : ${v}\`/videos/video_sol.mp4\`${_};`,
-      ],
-    }),
-  },
+  arte: `
+  <circle cx="1060" cy="104" r="46" fill="#acef75" opacity=".12"/>
+  <circle cx="1060" cy="104" r="28" fill="#acef75" opacity=".22"/>
+  ${fileira([[760, 390, 210], [840, 390, 250], [930, 390, 190], [1010, 390, 260], [1100, 390, 220], [1180, 390, 240]], '#2e482c')}
+  ${fileira([[700, 400, 150], [800, 400, 180], [890, 400, 140], [970, 400, 200], [1060, 400, 160], [1150, 400, 190]], '#16281f')}
+  ${fileira([[740, 410, 110], [860, 410, 130], [1000, 410, 120], [1120, 410, 140]], '#0f1c15')}
+  <g transform="translate(740,40)">
+    <rect width="252" height="38" rx="10" fill="#0f1c15" stroke="#2e482c"/>
+    <circle cx="18" cy="19" r="4" fill="#91ee77"/>
+    <g font-family="'DM Sans',system-ui,sans-serif" font-size="14" fill="#acef75">
+      <text x="30" y="24">Terça-Feira</text>
+      <line x1="118" y1="8" x2="118" y2="30" stroke="#2e482c"/>
+      <text x="130" y="24">22°</text>
+      <line x1="168" y1="8" x2="168" y2="30" stroke="#2e482c"/>
+      <text x="180" y="24">chuva 27%</text>
+    </g>
+  </g>`,
 });
